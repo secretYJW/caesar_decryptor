@@ -79,7 +79,7 @@ int Encrypt_text(char *text_buf, char *encrypt_buf, size_t length)
 	int key, temp;
 
 	srand((unsigned)time(NULL));
-	key = rand() % 30; // key값 생성
+	key = rand() % 10000; // key값 생성
 
 	/* 배열을 순회하면서 문자열을 암호화 함 */
 	for (i = 0; i < length; i++)
@@ -204,7 +204,7 @@ void Weight_attack(const char *encrypt_text, size_t length)
 	Decrypt_text(encrypt_text, decrypt_buf, most_letter - Weight_list[0].letter, length);
 
 	printf("\n> 아마 당신이 찾는 것은 아래의 복호화된 문자열일겁니다. 맞습니까?[Y/N]\n");
-	printf("%s\n>>> ", decrypt_buf);
+	printf("%c와의 차로 복호화됨. key = %d.\n%s\n>>> ", Weight_list[0].letter, most_letter - Weight_list[0].letter, decrypt_buf);
 	while( getchar() != '\n' );  /* 버퍼를 비운다 */
 	scanf("%c", &flag);
 
